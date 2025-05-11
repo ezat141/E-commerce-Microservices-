@@ -1,7 +1,6 @@
 package com.ezat.ecommerce.handler;
 
 import com.ezat.ecommerce.exception.BusinessException;
-import com.ezat.ecommerce.exception.ProductPurchaseException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

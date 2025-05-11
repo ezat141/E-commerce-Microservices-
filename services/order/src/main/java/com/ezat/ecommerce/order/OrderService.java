@@ -6,6 +6,8 @@ import com.ezat.ecommerce.kafka.OrderConfirmation;
 import com.ezat.ecommerce.kafka.OrderProducer;
 import com.ezat.ecommerce.orderline.OrderLineRequest;
 import com.ezat.ecommerce.orderline.OrderLineService;
+import com.ezat.ecommerce.payment.PaymentClient;
+import com.ezat.ecommerce.payment.PaymentRequest;
 import com.ezat.ecommerce.product.ProductClient;
 import com.ezat.ecommerce.product.PurchaseRequest;
 import jakarta.persistence.EntityNotFoundException;
@@ -25,6 +27,7 @@ public class OrderService {
     private final OrderMapper mapper;
     private final CustomerClient customerClient;
     private final ProductClient productClient;
+    private final PaymentClient paymentClient;
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
 
