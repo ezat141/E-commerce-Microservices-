@@ -14,6 +14,27 @@ services:
       - microservices-net
     restart: unless-stopped
 
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - microservices-net
+    restart: unless-stopped
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak-ms
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    ports:
+      - "9098:8080"
+    command: [ "start-dev" ]
+    networks:
+      - microservices-net
+
   mongodb:
     image: mongo
     container_name: ms_mongo_db
