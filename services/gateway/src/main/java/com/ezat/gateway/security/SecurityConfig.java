@@ -16,12 +16,14 @@ public class SecurityConfig {
         serverHttpSecurity
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("(/eureka/**").permitAll()
+                        .pathMatchers("/eureka/**").permitAll()
+                        // Allow Swagger UI and API docs without authentication
+                        .pathMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/api-docs/**").permitAll()
+                        .pathMatchers("/*/swagger-ui/**", "/*/api-docs/**").permitAll()
+                        .pathMatchers("/*/*/swagger-ui/**", "/*/*/api-docs/**").permitAll()
                         .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
         return serverHttpSecurity.build();
-
-
     }
 }
